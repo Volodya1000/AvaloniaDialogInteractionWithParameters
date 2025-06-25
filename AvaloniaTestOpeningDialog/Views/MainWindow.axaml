@@ -10,15 +10,11 @@
         Title="AvaloniaTestOpeningDialog">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
   
   <StackPanel Margin="20" Spacing="10">
     <TextBox Text="{Binding UserMessage, UpdateSourceTrigger=PropertyChanged}" />
     <Button x:Name="OpenDialogButton" Content="Open Dialog" />
-    <TextBlock Text="Last result:" />
-    <TextBlock Text="{Binding LastResult}" />
   </StackPanel>
 </Window>

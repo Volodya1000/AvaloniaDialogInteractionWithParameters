@@ -9,9 +9,7 @@ namespace AvaloniaTestOpeningDialog.ViewModels;
 public class MainWindowViewModel : ReactiveObject
 {
     public Interaction<MyDialogParams, MyDialogResult?> ShowDialogInteraction { get; }
-    public ReactiveCommand<Unit, Unit> OpenDialogCommand { get; }
-    public string? LastResult { get => _lastResult; set => this.RaiseAndSetIfChanged(ref _lastResult, value); }
-    private string? _lastResult;
+    public ReactiveCommand<Unit, Unit> OpenDialogCommand { get; } 
 
     private string _userMessage = string.Empty;
     public string UserMessage
