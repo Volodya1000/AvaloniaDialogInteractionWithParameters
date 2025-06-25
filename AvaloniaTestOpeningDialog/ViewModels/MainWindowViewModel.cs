@@ -13,6 +13,13 @@ public class MainWindowViewModel : ReactiveObject
     public string? LastResult { get => _lastResult; set => this.RaiseAndSetIfChanged(ref _lastResult, value); }
     private string? _lastResult;
 
+    private string _userMessage = string.Empty;
+    public string UserMessage
+    {
+        get => _userMessage;
+        set => this.RaiseAndSetIfChanged(ref _userMessage, value);
+    }
+
     public MainWindowViewModel()
     {
         ShowDialogInteraction = new Interaction<MyDialogParams, MyDialogResult?>();
@@ -21,11 +28,11 @@ public class MainWindowViewModel : ReactiveObject
 
     private async Task OpenDialogAsync()
     {
-        var param = new MyDialogParams { Value = "Hello from MainWindow" };
+        var param = new MyDialogParams { Value = UserMessage };
         var result = await ShowDialogInteraction.Handle(param);
         if (result != null)
         {
-            LastResult = result.Answer;
+            UserMessage = result.Answer;
         }
     }
 

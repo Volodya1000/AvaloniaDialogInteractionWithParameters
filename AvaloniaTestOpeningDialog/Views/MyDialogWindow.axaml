@@ -7,9 +7,11 @@
         x:Class="AvaloniaTestOpeningDialog.MyDialogWindow"
         x:DataType="vm:MyDialogViewModel"
         Title="MyDialogWindow">
+
   <StackPanel Margin="20" Spacing="10">
-    <TextBlock Text="Dialog opened with:" />
-    <TextBlock Text="{Binding Params.Value}" />
+    <TextBlock Text="Edit message from main window:" />
+    <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" />
+
     <Button x:Name="AcceptButton" Content="OK" />
   </StackPanel>
 </Window>

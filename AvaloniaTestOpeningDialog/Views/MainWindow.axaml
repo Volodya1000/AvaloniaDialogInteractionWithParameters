@@ -16,6 +16,7 @@
     </Design.DataContext>
   
   <StackPanel Margin="20" Spacing="10">
+    <TextBox Text="{Binding UserMessage, UpdateSourceTrigger=PropertyChanged}" />
     <Button x:Name="OpenDialogButton" Content="Open Dialog" />
     <TextBlock Text="Last result:" />
     <TextBlock Text="{Binding LastResult}" />

@@ -1,7 +1,9 @@
 using Avalonia.ReactiveUI;
 using AvaloniaTestOpeningDialog.ViewModels;
 using ReactiveUI;
+using System;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace AvaloniaTestOpeningDialog;
 
@@ -18,8 +20,12 @@ public partial class MyDialogWindow : ReactiveWindow<MyDialogViewModel>
                 .DisposeWith(disposables);
 
             ViewModel.AcceptCommand
-                .InvokeCommand(ReactiveCommand.Create(() => Close(ViewModel.Result)))
-                .DisposeWith(disposables);
+              .Subscribe(_ =>
+              {
+                  if (ViewModel.Result != null)
+                      Close(ViewModel.Result);
+              })
+              .DisposeWith(disposables);
         });
     }
 }
