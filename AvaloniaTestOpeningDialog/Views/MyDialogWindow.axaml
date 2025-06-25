@@ -2,16 +2,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="using:AvaloniaTestOpeningDialog.ViewModels"
+        xmlns:vm="clr-namespace:AvaloniaTestOpeningDialog.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaTestOpeningDialog.MyDialogWindow"
-        x:DataType="vm:MyDialogViewModel"
-        Title="MyDialogWindow">
+        Title="MyDialogWindow"
+        x:DataType="vm:MyDialogViewModel">
 
   <StackPanel Margin="20" Spacing="10">
     <TextBlock Text="Edit message from main window:" />
-    <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" />
+    <TextBox Text="{Binding UserInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-    <Button x:Name="AcceptButton" Content="OK" />
+    <Button x:Name="AcceptButton" Content="OK" Command="{Binding AcceptCommand}" />
   </StackPanel>
 </Window>

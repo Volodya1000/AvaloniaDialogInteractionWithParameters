@@ -1,15 +1,14 @@
-﻿using AvaloniaTestOpeningDialog.Models;
+﻿using Model;
 using ReactiveUI;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Threading.Tasks;
 
-namespace AvaloniaTestOpeningDialog.ViewModels;
+namespace ViewModels;
 
 public class MainWindowViewModel : ReactiveObject
 {
     public Interaction<MyDialogParams, MyDialogResult?> ShowDialogInteraction { get; }
-    public ReactiveCommand<Unit, Unit> OpenDialogCommand { get; } 
+    public ReactiveCommand<Unit, Unit> OpenDialogCommand { get; }
 
     private string _userMessage = string.Empty;
     public string UserMessage
@@ -33,5 +32,4 @@ public class MainWindowViewModel : ReactiveObject
             UserMessage = result.Answer;
         }
     }
-
 }

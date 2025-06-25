@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using AvaloniaTestOpeningDialog.ViewModels;
 using AvaloniaTestOpeningDialog.Views;
 using Microsoft.Extensions.DependencyInjection;
+using ViewModels;
 
 namespace AvaloniaTestOpeningDialog;
 

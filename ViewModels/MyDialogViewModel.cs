@@ -1,8 +1,8 @@
-﻿using AvaloniaTestOpeningDialog.Models;
+﻿using Model;
 using ReactiveUI;
 using System.Reactive;
 
-namespace AvaloniaTestOpeningDialog.ViewModels;
+namespace ViewModels;
 
 public class MyDialogViewModel : ReactiveObject
 {

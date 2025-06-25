@@ -1,10 +1,9 @@
-using Avalonia.Controls;
 using Avalonia.ReactiveUI;
-using AvaloniaTestOpeningDialog.Models;
-using AvaloniaTestOpeningDialog.ViewModels;
+using Model;
 using ReactiveUI;
 using System;
 using System.Reactive.Disposables;
+using ViewModels;
 
 namespace AvaloniaTestOpeningDialog.Views;
 
@@ -12,7 +11,9 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
     public MainWindow(MainWindowViewModel viewModel, Func<MyDialogWindow> dialogFactory)
     {
-        InitializeComponent(); ViewModel = viewModel;
+        InitializeComponent(); 
+        
+        ViewModel = viewModel;
 
         this.WhenActivated(disposables =>
         {
