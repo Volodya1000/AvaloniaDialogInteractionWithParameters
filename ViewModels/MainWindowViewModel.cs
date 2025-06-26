@@ -7,7 +7,7 @@ namespace ViewModels;
 
 public class MainWindowViewModel : ReactiveObject
 {
-    public Interaction<MyDialogParams, MyDialogResult?> ShowDialogInteraction { get; }
+    public Interaction<MyDialogParams, MyDialogResult?> ShowDialogInteraction { get; } = new();
     public ReactiveCommand<Unit, Unit> OpenDialogCommand { get; }
 
     private string _userMessage = string.Empty;
@@ -19,7 +19,6 @@ public class MainWindowViewModel : ReactiveObject
 
     public MainWindowViewModel()
     {
-        ShowDialogInteraction = new Interaction<MyDialogParams, MyDialogResult?>();
         OpenDialogCommand = ReactiveCommand.CreateFromTask(OpenDialogAsync);
     }
 
