@@ -19,20 +19,16 @@ public partial class App : Application
     public override void OnFrameworkInitializationCompleted()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<MainWindowViewModel>();
-        services.AddSingleton<MainWindow>();
+        services.AddTransient<MainWindowViewModel>();
+        services.AddTransient<MainWindow>();
 
-        // Remove this line as we'll create it via factory
-        // services.AddTransient<MyDialogViewModel>();
 
         services.AddTransient<MyDialogWindow>(sp =>
             new MyDialogWindow(sp.GetRequiredService<MyDialogViewModel>()));
 
-        // Simplified factory that creates the VM with parameters
         services.AddTransient<Func<MyDialogParams, MyDialogViewModel>>(provider =>
             param => new MyDialogViewModel(param));
 
-        // Simplified window factory that uses the VM factory
         services.AddTransient<Func<MyDialogParams, MyDialogWindow>>(provider =>
             param =>
             {
@@ -50,7 +46,4 @@ public partial class App : Application
 
         base.OnFrameworkInitializationCompleted();
     }
-
-
-
 }
