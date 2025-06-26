@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using AvaloniaTestOpeningDialog.ViewModels;
 using AvaloniaTestOpeningDialog.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Model;
