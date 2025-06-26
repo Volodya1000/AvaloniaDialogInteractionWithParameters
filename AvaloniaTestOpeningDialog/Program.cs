@@ -28,19 +28,8 @@ internal sealed class Program
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<MainWindow>();
 
-        services.AddTransient<MyDialogWindow>(sp =>
-            new MyDialogWindow(sp.GetRequiredService<MyDialogViewModel>()));
-
-        services.AddTransient<Func<MyDialogParams, MyDialogViewModel>>(provider =>
-            param => new MyDialogViewModel(param));
-
         services.AddTransient<Func<MyDialogParams, MyDialogWindow>>(provider =>
-            param =>
-            {
-                var vmFactory = provider.GetRequiredService<Func<MyDialogParams, MyDialogViewModel>>();
-                var vm = vmFactory(param);
-                return new MyDialogWindow(vm);
-            });
+            param => new MyDialogWindow(new MyDialogViewModel(param)));
     }
 
     public static AppBuilder BuildAvaloniaApp()
