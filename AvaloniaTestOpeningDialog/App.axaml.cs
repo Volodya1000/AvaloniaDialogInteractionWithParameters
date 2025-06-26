@@ -18,23 +18,28 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
-        var services = new ServiceCollection(); 
-        services.AddSingleton<MainWindowViewModel>(); 
-        services.AddTransient<MyDialogViewModel>();
-        services.AddTransient<MyDialogWindow>(sp => new MyDialogWindow(sp.GetRequiredService<MyDialogViewModel>()));
+        var services = new ServiceCollection();
+        services.AddSingleton<MainWindowViewModel>();
+        services.AddSingleton<MainWindow>();
+
+        // Remove this line as we'll create it via factory
+        // services.AddTransient<MyDialogViewModel>();
+
+        services.AddTransient<MyDialogWindow>(sp =>
+            new MyDialogWindow(sp.GetRequiredService<MyDialogViewModel>()));
+
+        // Simplified factory that creates the VM with parameters
+        services.AddTransient<Func<MyDialogParams, MyDialogViewModel>>(provider =>
+            param => new MyDialogViewModel(param));
+
+        // Simplified window factory that uses the VM factory
         services.AddTransient<Func<MyDialogParams, MyDialogWindow>>(provider =>
             param =>
             {
-                var vm = provider.GetRequiredService<MyDialogViewModel>();
-                var window = new MyDialogWindow(vm);
-                return window;
-            }
-        );
-
-        services.AddTransient<Func<MyDialogParams, MyDialogViewModel>>(provider =>
-            param => ActivatorUtilities.CreateInstance<MyDialogViewModel>(provider, param)
-        );
-
+                var vmFactory = provider.GetRequiredService<Func<MyDialogParams, MyDialogViewModel>>();
+                var vm = vmFactory(param);
+                return new MyDialogWindow(vm);
+            });
 
         var provider = services.BuildServiceProvider();
 

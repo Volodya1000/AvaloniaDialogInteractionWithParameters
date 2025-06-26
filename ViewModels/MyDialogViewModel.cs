@@ -2,6 +2,8 @@
 using ReactiveUI;
 using System.Reactive;
 
+namespace ViewModels;
+
 public class MyDialogViewModel : ReactiveObject
 {
     public MyDialogParams Params { get; }
