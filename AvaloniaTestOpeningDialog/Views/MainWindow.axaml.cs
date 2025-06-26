@@ -18,10 +18,6 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
         // Добавление реактивных биндингов при активации окна
         this.WhenActivated(disposables =>
         {
-            // Привязка команды OpenDialogCommand из ViewModel к кнопке OpenDialogButton в UI
-            this.BindCommand(ViewModel, vm => vm.OpenDialogCommand, v => v.OpenDialogButton)
-                .DisposeWith(disposables); // Автоматическое удаление привязки при деактивации
-
             ViewModel.ShowDialogInteraction.RegisterHandler(async interaction =>
             {
                 // Создаем диалоговое окно через фабрику

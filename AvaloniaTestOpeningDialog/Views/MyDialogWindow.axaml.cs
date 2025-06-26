@@ -16,9 +16,6 @@ public partial class MyDialogWindow : ReactiveWindow<MyDialogViewModel>
 
         this.WhenActivated(disposables =>
         {
-            this.BindCommand(ViewModel, vm => vm.AcceptCommand, v => v.AcceptButton)
-                .DisposeWith(disposables);
-
             ViewModel.AcceptCommand
               .Subscribe(_ =>
               {
