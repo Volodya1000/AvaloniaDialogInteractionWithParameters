@@ -3,9 +3,8 @@ using ReactiveUI;
 using System;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using ViewModels;
 
-namespace AvaloniaTestOpeningDialog;
+namespace AvaloniaTestOpeningDialog.Views;
 
 public partial class MyDialogWindow : ReactiveWindow<MyDialogViewModel>
 {

@@ -9,7 +9,9 @@ namespace AvaloniaTestOpeningDialog.Views;
 
 public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
-    public MainWindow(MainWindowViewModel viewModel, Func<MyDialogWindow> dialogFactory)
+    public MainWindow(MainWindowViewModel viewModel,
+                    Func<MyDialogParams, MyDialogWindow> dialogFactory,
+                    Func<MyDialogParams, MyDialogViewModel> dialogVmFactory)
     {
         InitializeComponent(); 
         
@@ -20,19 +22,19 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
         {
             ViewModel.ShowDialogInteraction.RegisterHandler(async interaction =>
             {
-                // Создаем диалоговое окно через фабрику
-                var dialog = dialogFactory();
+                // Создаем ViewModel через фабрику
+                var dialogVm = dialogVmFactory(interaction.Input);
 
-                // Получаем ViewModel диалога и инициализируем ее входными данными
-                var dialogVm = dialog.DataContext as MyDialogViewModel;
-                dialogVm!.Init(interaction.Input);
+                // Создаем окно через фабрику, передавая ViewModel в конструктор
+                var dialog = dialogFactory(interaction.Input); // Если нужно, можно передавать параметры и в окно
 
-                // Показываем диалог модально и ждем результат
+                // Устанавливаем ViewModel (ReactiveWindow сам свяжет ViewModel с DataContext)
+                dialog.ViewModel = dialogVm;
+
+                // Показываем диалог и ждем результат
                 var res = await dialog.ShowDialog<MyDialogResult?>(this);
-
-                // Передаем результат обратно в interaction
                 interaction.SetOutput(res);
-            }).DisposeWith(disposables);// Автоматическая отписка при деактивации
+            }).DisposeWith(disposables);
         });
     }
 
