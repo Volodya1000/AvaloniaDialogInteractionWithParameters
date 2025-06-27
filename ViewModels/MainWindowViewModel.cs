@@ -1,7 +1,7 @@
-﻿using Model;
-using ReactiveUI;
+﻿using ReactiveUI;
 using System.Reactive;
 using System.Reactive.Linq;
+using ViewModels.DialogInteractionParams;
 
 namespace ViewModels;
 

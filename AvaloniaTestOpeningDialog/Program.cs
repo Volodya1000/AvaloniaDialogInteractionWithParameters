@@ -2,9 +2,9 @@
 using Avalonia.ReactiveUI;
 using AvaloniaTestOpeningDialog.Views;
 using Microsoft.Extensions.DependencyInjection;
-using Model;
 using System;
 using ViewModels;
+using ViewModels.DialogInteractionParams;
 
 namespace AvaloniaTestOpeningDialog;
 

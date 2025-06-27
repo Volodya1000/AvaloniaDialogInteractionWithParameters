@@ -1,9 +1,9 @@
 using Avalonia.ReactiveUI;
-using Model;
 using ReactiveUI;
 using System;
 using System.Reactive.Disposables;
 using ViewModels;
+using ViewModels.DialogInteractionParams;
 
 namespace AvaloniaTestOpeningDialog.Views;
 

@@ -1,6 +1,6 @@
-﻿using Model;
-using ReactiveUI;
+﻿using ReactiveUI;
 using System.Reactive;
+using ViewModels.DialogInteractionParams;
 
 namespace ViewModels;
 
